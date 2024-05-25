@@ -14,5 +14,5 @@ Executa o projeto e informa localhost
 Gerar componente
     ng g c nome-componente (ng gerar component)
 
-
+Para usar a diretiva ngIf, importar dentro do arquivo .ts do componente o [CommonModule]
 
