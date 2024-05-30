@@ -14,5 +14,21 @@ Executa o projeto e informa localhost
 Gerar componente
     ng g c nome-componente (ng gerar component)
 
-Para usar a diretiva ngIf, importar dentro do arquivo .ts do componente o [CommonModule]
+Para usar as diretivas, importar dentro do arquivo .ts do componente o [CommonModule]
 
+ngIf
+ngFor
+ngSwitch
+ngStyle
+ngClass
+
+Control Flow - é possível fazer if, for e case com @if, @for e @case no HTML, sem precisar do CommonModule. Variáveis tem que estar no js.
+
+FormsModel - precisa importar o componente em imports dentro do arquivo js [FormsModel]
+ two-way binding [(ngModel)]="nome" 
+ OBS: se for trabalhar com uma estrutura dentro de um <from></form> utilizar o name="" e passar o nome do input para dar certo (ver componente 09)
+
+ReactiveFormsModel - importar o [ReaciveFormsModel], utilizar os conceitos dentro de uma classe.
+    detalhes em Componente10
+
+Projeto começa no componente 11
