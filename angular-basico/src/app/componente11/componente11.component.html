@@ -31,11 +31,11 @@
     <input type="text"   formControlName="cidade" placeholder="Cidade" class="form-control">
 
     @if(btnCadastrar){
-        <input type="button" value="Cadastrar" class="btn btn-primary" [disabled]="formulario.invalid">
+        <input type="button" value="Cadastrar" (click)="cadastrar()" class="btn btn-primary" [disabled]="formulario.invalid">
     }@else{
-        <input type="button" value="Alterar" class="btn btn-primary" [disabled]="formulario.invalid">
-        <input type="button" value="Remover" class="btn btn-primary">
-        <input type="button" value="Cancelar" class="btn btn-primary">
+        <input type="button" value="Alterar" (click)="alterar()" class="btn btn-primary" [disabled]="formulario.invalid">
+        <input type="button" value="Remover" (click)="remover()" class="btn btn-primary">
+        <input type="button" value="Cancelar" (click)="cancelar()" class="btn btn-primary">
     }
 
     
@@ -52,6 +52,12 @@
         <th>Selecionar</th>
     </thead>
     <tbody>
-
+        <tr *ngFor="let v of vetor; index as indice">
+            <th>{{indice + 1}}</th>
+            <th>{{v.nome}}</th>
+            <th>{{v.idade}}</th>
+            <th>{{v.cidade}}</th>
+            <th><button class="btn btn-primary" (click)="selecionar(indice)">Selecionar</button></th>
+        </tr>
     </tbody>
 </table>
