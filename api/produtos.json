@@ -1,0 +1,19 @@
+{
+  "produtos": [
+    {
+      "nome": "Galaxy S24",
+      "valor": 5000,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "nome": "iPhone 15 Pró Max",
+      "valor": 7000
+    },
+    {
+      "id": 4,
+      "nome": "MacBook Pro",
+      "valor": 12000
+    }
+  ]
+}
