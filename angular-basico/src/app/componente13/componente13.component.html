@@ -1,7 +1,7 @@
 <!-- FORMULÁRIO -->
 <form [formGroup]="formulario">
     <!-- <input type="number" class="form-control" formControlName="id" readonly > -->
-    <input type="text"   class="form-control" formControlName="nome" placeholder="Nome">
+    <input type="text"   class="form-control" formControlName="nome" placeholder="Nome" (keyup)="filtro = $any($event.target).value">
     <input type="number" class="form-control" formControlName="valor" placeholder="Valor">
 
     <input type="button" class="btn btn-primary" value="Cadastrar" *ngIf="btnCadastrar" (click)="cadastrar()"> 
@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let v of vetor; let indice = index">
+        <tr *ngFor="let v of (vetor | pipeArray : filtro); let indice = index">
             <td>{{ indice+1 }}</td>
             <td>{{ v.nome }}</td>
             <td>{{ v.valor }}</td>

@@ -3,15 +3,20 @@ import { Component } from '@angular/core';
 import { Produto } from '../modelo/Produto';
 import { ProdutoService } from '../servico/produto.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PipeArrayPipe } from '../pipe/pipe-array.pipe';
 
 @Component({
   selector: 'app-componente13',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PipeArrayPipe],
   templateUrl: './componente13.component.html',
   styleUrl: './componente13.component.css'
 })
 export class Componente13Component {
+
+  // Controle do que o usuário irá digitar para pesquisar
+  nomes:Array<{nome:string}> = []
+  filtro:string = '';
 
   //Vetor
   vetor:Produto[] = [];
@@ -34,19 +39,32 @@ export class Componente13Component {
     this.selecionar();
   }
 
-  // Método para selecionar todos os produtos
+  // Método para selecionar os produtos
   selecionar(){
     this.servico.selecionar().subscribe(retorno => {this.vetor = retorno});
+    this.servico.selecionar().subscribe(retorno => this.nomes = retorno);
   }
 
   // Método para cadastrar produtos
   cadastrar(){
-    this.servico.cadastrar(this.formulario.value as Produto)
-    .subscribe(retorno => {
-      this.vetor.push(retorno);
+
+    // Verifica se o produto que está tentando cadastrar não existe com esse nome
+    let indiceExiste = this.vetor.findIndex(obj => {
+      this.formulario.value.nome === obj.nome;
+    });
+
+    if(indiceExiste == 0){
+      this.servico.cadastrar(this.formulario.value as Produto)
+      .subscribe(retorno => {
+        this.vetor.push(retorno);
 
       this.formulario.reset();
-    })
+      })
+    }else{
+      alert('Produto já cadastrado com esse nome!');
+      this.formulario.reset();
+      window.location.reload();
+    }
   }
 
   // Método para selecionar um produto específico
@@ -69,7 +87,7 @@ export class Componente13Component {
 
       // Obter o índice do objeto alterado
       let indiceAlterado = this.vetor.findIndex(obj => {
-        this.formulario.value === obj.id;
+        return this.formulario.value.id === obj.id;
       });
 
       // Alterar o vetor
